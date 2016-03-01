@@ -69,7 +69,6 @@
 
 <div>
     <h1>日历</h1>
-    <div id="cal"></div>
 </div>
 
 <script>
@@ -86,16 +85,16 @@
         var weekdayName = getValueByName("weekdayName");
         weekdayName = JSON.parse(weekdayName);
 
-        var cal = new Calendar({
+        var cal = new Calendar()
+
+        return selectDate({
             holiday: holidayData,       //节假日数据
             dayClass: dayClass,         //天样式
             weekClass: weekClass,       //周样式
             monthClass: monthClass,     //月份样式
             weekdayName: weekdayName,   //星期一,星期二等等
             isShowMonth: true   //是否显示标题 2016年2月
-        })
-
-        return cal.renderMonth(month, year, displayMonthNum)
+        }, month, year, displayMonthNum)
                 .then(function() {
                     return cal.selectDate();
                 })
